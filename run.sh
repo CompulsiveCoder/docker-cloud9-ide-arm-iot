@@ -11,4 +11,9 @@ USERNAME="user"
 PASWORD="pass1234"
 
 # Authenticated by username and password
-docker run --name cloud9-ide-arm-iot -it -d -p $HOST_PORT:8181 -v $WORKSPACE_PATH:/workspace cloud9-ide-arm-iot node server.js -w/workspace --listen 0.0.0.0 -a $USERNAME:$PASSWORD
+#docker run --name cloud9-ide-arm-iot -it -d -p $HOST_PORT:8181 -v $WORKSPACE_PATH:/workspace cloud9-ide-arm-iot node server.js -w/workspace --listen 0.0.0.0 -a $USERNAME:$PASSWORD
+
+
+docker run --name cloud9-ide-arm-iot -it -d -p $HOST_PORT:8181 -v $WORKSPACE_PATH:/workspace -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) cloud9-ide-arm-iot node server.js -w/workspace --listen 0.0.0.0 -a $USERNAME:$PASSWORD
+
+
